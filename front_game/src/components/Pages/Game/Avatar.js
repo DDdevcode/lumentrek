@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import sheild from '../../../img/shield.png'
-import redAvatar from '../../../img/fireAvatar.jpg'
-import greenAvatar from '../../../img/grassAvatar.jpg'
+import redAvatar from '../../../img/space1.png'
+import greenAvatar from '../../../img/captaindog.png'
 import redMana from '../../../img/redMana.png'
 import greenMana from '../../../img/greenMana.png'
 
@@ -9,7 +9,7 @@ export class Avatar extends Component {
 
     healthStyle = () =>{
         if(this.props.healthStyle){return this.props.healthStyle}
-        else{        
+        else{
             return{
             background: `url(${sheild})`,
             backgroundSize: 'contain',
@@ -25,10 +25,10 @@ export class Avatar extends Component {
             zIndex: '10',
         }}
       }
-      
+
     manaStyle = () =>{
     if(this.props.manaStyle){return this.props.manaStyle}
-    else{            
+    else{
         return{
         backgroundImage: this.props.avatar === "green" ? `url(${greenMana})` : `url(${redMana})`,
         backgroundSize: '100px',
@@ -49,7 +49,7 @@ export class Avatar extends Component {
 
     avatarStyle = () =>{
     if(this.props.avatarStyle){return this.props.avatarStyle}
-    else{            
+    else{
         return{
             position: 'absolute',
             bottom: '0px',
@@ -61,10 +61,10 @@ export class Avatar extends Component {
             backgroundImage: this.props.avatar === "green" ? `url(${greenAvatar})` : `url(${redAvatar})`,
             backgroundPosition: this.props.avatar === "green" ? `inherit` : `30%`,
             borderRadius: '40%',
-            boxShadow: `0em 0em 43px 43px ${this.props.avatar}`
+            boxShadow: `0em 0em 43px 43px #8e48a1`
     }}
         }
-    
+
 
     avatar = () =>{
         if(this.props.avatar === "green" && this.props.isPlayer){return "greenAvatar"}
@@ -78,10 +78,10 @@ export class Avatar extends Component {
 <div>
    <div style={this.avatarStyle()} className={this.avatar()}>
    </div>
-   <div style={this.healthStyle()} className="avatar-health"> 
+   <div style={this.healthStyle()} className="avatar-health">
    <div style={{width:'33px', textAlign:"center"}}>{this.props.playerHealth} </div>
    </div>
-   <div style={this.manaStyle()}> 
+   <div style={this.manaStyle()}>
       <div style={{width:'33px', textAlign:"center"}}>{this.props.playerMana} </div>
    </div>
 </div>

@@ -7,8 +7,8 @@ import Avatar from "./Avatar"
 import Field from "./Field"
 import './Styles/game.css'
 import sheild from '../../../img/shield.png'
-import redAvatar from '../../../img/fireAvatar.jpg'
-import greenAvatar from '../../../img/grassAvatar.jpg'
+import redAvatar from '../../../img/captain.jpg'
+import greenAvatar from '../../../img/captaindog.png'
 import redMana from '../../../img/redMana.png'
 import greenMana from '../../../img/greenMana.png'
 import draw from "../../../audio/Draw.mp3"
@@ -52,7 +52,7 @@ export class Game extends Component {
       attack: new Audio(attack),
       defend: new Audio(defend)
     }
-    
+
     currentAttacker = {}
     currentDefender = {}
 
@@ -61,7 +61,7 @@ export class Game extends Component {
       //Player Draw
       if(isPlayer && this.state.playerTurn && cards.length > 0){
         this.state.drawAudio.play();
-        setTimeout(()=>{ 
+        setTimeout(()=>{
           let random = Math.floor((Math.random() * cards.length) + 0)
           this.state.playerHand.push(cards[random])
           this.props.playerCards.splice(random, 1)
@@ -71,7 +71,7 @@ export class Game extends Component {
       //Enemy Draw
       else if(!isPlayer && cards.length > 0){
         this.state.drawAudio.play();
-        setTimeout(()=>{ 
+        setTimeout(()=>{
           let random = Math.floor((Math.random() * cards.length) + 0)
           this.state.enemyHand.push(cards[random])
           this.props.enemyCards.splice(random, 1)
@@ -131,7 +131,7 @@ export class Game extends Component {
             this.setState({ playerField: this.state.playerField.map((card)=> {card.canAttack = true; return card}) })
             // Show text for player turn
             $(".turn-text").fadeIn()
-            setTimeout(()=>{ 
+            setTimeout(()=>{
               $(".turn-text").fadeOut()
               $(`#playerTurn`).fadeIn()
           }, 1000);
@@ -170,7 +170,7 @@ export class Game extends Component {
         if (this.state.enemyField.length > 0){
           //Enemy Summon card
           for (let i = 0; i< this.state.enemyField.length; i++){
-            setTimeout(()=>{ 
+            setTimeout(()=>{
 
             let attack = this.state.enemyField[i].attack
             if(this.state.playerField.length > 0){
@@ -178,7 +178,7 @@ export class Game extends Component {
               $(`#${this.state.enemyField[i].id}`).parent().effect( "bounce", "slow");
               this.state.attack.play()
               //Defend Effects
-              setTimeout(()=>{ $(`#${this.currentDefender.id}`).parent().effect( "shake", "slow"); 
+              setTimeout(()=>{ $(`#${this.currentDefender.id}`).parent().effect( "shake", "slow");
               this.state.defend.play()
               }, 1000);
 
@@ -192,9 +192,9 @@ export class Game extends Component {
                 setTimeout(()=>{ $(`#${this.currentDefender.id}`).parent().effect( "explode", "slow")}, 2000);
                 setTimeout(()=>{ this.state.playerField.splice(random, 1)}, 2500);
               }
-              //Set Player Field 
+              //Set Player Field
               this.setState({ playerField: this.state.playerField })
-      
+
             }
             //Attack Player if no Monsters on Field
             else{
@@ -258,7 +258,7 @@ export class Game extends Component {
     cardDefend = (currentCard, isPlayer, onField)=>{
       console.log(currentCard)
       if(!isPlayer && this.state.playerTurn && onField && this.state.playerTurn && this.currentAttacker.canAttack){
-      
+
         //Set Monster can Attacj this turn to false
         this.currentAttacker.canAttack = false
 
@@ -270,7 +270,7 @@ export class Game extends Component {
         setTimeout(()=>{ $(`#${defenderId}`).parent().effect( "shake", "slow");
         this.state.defend.play()
       }, 1000);
-    
+
         //Update State and Values of Defender
         this.setState({ currentDefense: currentCard.defense })
         currentCard.defense = currentCard.defense - this.state.currentAttack
@@ -281,7 +281,7 @@ export class Game extends Component {
         if(currentCard.defense <= 0){
           this.state.destroyAudio.play();
           setTimeout(()=>{ $(`#${defenderId}`).parent().effect( "explode", "slow");}, 1500);
-          setTimeout(()=>{ 
+          setTimeout(()=>{
             let enemyField = this.state.enemyField.filter((card)=> card.id !== currentCard.id)
             this.setState({ enemyField: enemyField })
       }, 2000);
@@ -399,13 +399,13 @@ export class Game extends Component {
           }
 
     render() {
-      return( 
+      return(
         <React.Fragment>
           <div id="battle" style={this.battle()}>
           {/* Player */}
           <Player>
             <Field>
-              {this.state.playerField.map(card => <Card cardDefend={this.cardDefend} cardAttack={this.cardAttack} onField={true} playerTurn={this.state.playerTurn} cardSelect={this.cardSelect} canPlay={false} isPlayer={true} playCard={this.playCard} key={card.id} card={card}/>)}  
+              {this.state.playerField.map(card => <Card cardDefend={this.cardDefend} cardAttack={this.cardAttack} onField={true} playerTurn={this.state.playerTurn} cardSelect={this.cardSelect} canPlay={false} isPlayer={true} playCard={this.playCard} key={card.id} card={card}/>)}
             </Field>
             <Hand>
               {this.state.playerHand.map(card => <Card cardDefend={this.cardDefend} cardAttack={this.cardAttack} onField={false} cardSelect={this.cardSelect} canPlay={true} isPlayer={true} playCard={this.playCard} key={card.id} card={card}/>)}
@@ -420,7 +420,7 @@ export class Game extends Component {
          {/* Enemy */}
           <Player enemyPlayer={enemyPlayer}>
             <Field enemyField={enemyField}>
-              {this.state.enemyField.map(card => <Card cardDefend={this.cardDefend} isPlayer={false} onField={true} cardSelect={this.cardSelect} canPlay={false} playCard={this.playCard} key={card.id} card={card}/>)}  
+              {this.state.enemyField.map(card => <Card cardDefend={this.cardDefend} isPlayer={false} onField={true} cardSelect={this.cardSelect} canPlay={false} playCard={this.playCard} key={card.id} card={card}/>)}
             </Field>
             <Hand enemyHand={enemyHand}>
               {this.state.enemyHand.map(card => <Card cardDefend={this.cardDefend} isPlayer={false} cardSelect={this.cardSelect} enemyCard={enemyCard} canPlay={true} playCard={this.playCard} key={card.id} card={card}/>)}

@@ -1,0 +1,25 @@
+name = "<your-nft-project-name>"
+type = "javascript"
+compatibility_date = "2022-03-03"
+
+account_id = "<your-cloudflare-account-id>"
+usage_model = "bundled"
+workers_dev = true
+kv_namespaces = [ 
+	{ binding = "FLAGGED", id = "<your-flagged-kv-id>" } # https://developers.cloudflare.com/workers/cli-wrangler/commands/#create
+]
+
+[vars]
+STELLAR_NETWORK = "TESTNET"
+HORIZON_URL = "https://horizon-testnet.stellar.org"
+IMGIX_DOMAIN = "<imgix-domain>" # if using imgix input your custom source domain
+# SIGNER_SK = "<your-contract-signer-secret>" # upload via wrangler (https://developers.cloudflare.com/workers/cli-wrangler/commands/#put)
+# SPONSOR_SK = "<your-offer-sponsor-secret>" # upload via wrangler
+# IMGIX_TOKEN = "<imgix-image-signing-token>" # if using imgix for image caching. upload via wrangler
+
+[build]
+command = "npm run build"
+
+[build.upload]
+format = "modules"
+main = "./shim.mjs"
