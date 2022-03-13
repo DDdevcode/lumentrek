@@ -1,5 +1,5 @@
 <template>
-  <p v-if="userAccountLoaded">
+  <!--<p v-if="userAccountLoaded">
     <button @click="refresh" :disabled="loading">Refresh</button>
 
     {{
@@ -8,18 +8,18 @@
       ).balance))
     }}
     XLM
-  </p>
+  </p>-->
 
-  <h1>Mint NFT</h1>
+  <h1>My key</h1>
 
   <form @submit.prevent="apiMint">
     <label>
       User Secret
       <input type="text" v-model="userSecret" />
-      <button @click="createAccount('user')" type="button" :disabled="loading">{{userSecret ? 'Regenerate' : 'Generate'}}</button>
+      <!--<button @click="createAccount('user')" type="button" :disabled="loading">{{userSecret ? 'Regenerate' : 'Generate'}}</button>-->
     </label>
 
-    <label>
+  <!--  <label>
       Issuer Public Key
       <input type="text" v-model="issuerAccount" />
       <button @click="createAccount('issuer')" type="button" :disabled="loading">{{issuerAccount ? 'Regenerate' : 'Generate'}}</button>
@@ -31,10 +31,10 @@
       <img :src="`${apiUrl}/ipfs/0x0/${ipfsHash}`" v-if="ipfsHash" />
     </label>
 
-    <button :disabled="loading" v-if="issuerAccountLoaded && ipfsHash">Mint</button>
+    <button :disabled="loading" v-if="issuerAccountLoaded && ipfsHash">Mint</button>-->
   </form>
 
-  <h1>Monsters</h1>
+  <h1>My Spaceships</h1>
 
   <ul v-if="userAccountLoaded">
     <li
@@ -73,9 +73,7 @@
     </li>
   </ul>
 
-  <footer>
-    <a href="https://github.com/tyvdh/nft-stellar-buzz">GitHub Repo</a>
-  </footer>
+
 </template>
 
 <script>
@@ -229,18 +227,21 @@ export default {
 
 <style lang="scss">
 body {
-  background-color: whitesmoke;
+  background:url("./Website.png")
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   padding: 10px;
-  font-size: 16px;
+  font-size: 30px;
+  padding-top: 1000px;
+  padding-left: 160px;
+  color:#FFF;
 }
 h1 {
-  margin: 30px 0 10px;
-  font-size: 36px;
+  margin: 30px 450px 35px;
+  font-size: 50px;
   font-weight: 600;
 }
 img {
@@ -287,13 +288,15 @@ input {
   margin: 0 5px 0 10px;
   outline: none;
   appearance: none;
-  background-color: white;
-  border: solid 1px black;
-  color: black;
+background: linear-gradient(267.6deg, rgba(23, 37, 165, 0.5) -13.05%, rgba(165, 40, 209, 0.5) 113.55%);  border: solid 1px black;
+  color: #FFF;
   border-radius: 3px;
   padding: 0 10px;
   height: 30px;
-  font-size: 12px;
+  width: 800px;
+  font-size: 22px;
+  box-shadow: 0px 0px 30px rgba(196, 56, 254, 0.5);
+border-radius: 10px;
 }
 ul {
   display: flex;
@@ -305,14 +308,13 @@ li {
   flex-direction: column;
   align-items: flex-end;
   margin: 0 10px 10px 0;
-  background-color: white;
-  box-shadow: 0 5px 10px lightgray, inset 0 0 0 1px lightgray;
+
   padding: 10px;
   border-radius: 5px;
 
   img {
     max-width: 100%;
-    max-height: calc(16px * 12);
+    max-height: 300px;
   }
   button {
     height: auto;
@@ -321,7 +323,12 @@ li {
     flex-direction: column;
     align-items: flex-start;
     line-height: 1.2;
+    color:#FFF;
+    font-size:20px;
     margin-top: 10px;
+    background: linear-gradient(142.64deg, #8840FF 11.78%, #F930FD 109.73%, #FB38FF 109.73%);
+box-shadow: 0px 0px 30px rgba(196, 56, 254, 0.5);
+border-radius: 10px;
 
     span {
 

@@ -340,7 +340,7 @@ export class Game extends Component {
               backgroundImage: this.props.avatar === "red" ? `url(${greenAvatar})` : `url(${redAvatar})`,
               backgroundPosition: `25%`,
               borderRadius: '40%',
-              boxShadow: this.props.avatar === "green" ? `0em 0em 43px 43px red` : `0em 0em 43px 43px green`
+              boxShadow: this.props.avatar === "green" ? `0em 0em 43px 43px purple` : `0em 0em 43px 43px green`
           }
           }
 
